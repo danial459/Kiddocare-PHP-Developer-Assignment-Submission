@@ -58,7 +58,7 @@ $result_4= $conn->query($sql_4);
 
 
 
-$sql_5 = "SELECT c.contactname,round(SUM((1-o.discount)*(o.quantity*o.unitprice))) AS sales
+$sql_5 = "SELECT c.contactname,round(SUM((1-o.discount)*(o.quantity*o.unitprice)),2) AS sales
           FROM orders a 
           JOIN customers c ON (c.customerid = a.customerid)
           JOIN order_details o ON (o.orderid = a.orderid)
@@ -71,7 +71,7 @@ $result_5= $conn->query($sql_5);
 
 
 
-$sql_6 = "SELECT concat(e.firstname,' ',e.lastname) AS fname,round(SUM((1-o.discount)*(o.quantity*o.unitprice))) AS sales
+$sql_6 = "SELECT concat(e.firstname,' ',e.lastname) AS fname,round(SUM((1-o.discount)*(o.quantity*o.unitprice)),2) AS sales
           FROM orders a 
           JOIN order_details o ON (o.orderid = a.orderid)
           JOIN employees e ON (e.employeeid = a.employeeid)
